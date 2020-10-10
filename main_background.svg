@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="360" height="640" viewBox="0 0 360 640">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.553" y2="1.012" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#6200ea"/>
+      <stop offset="1" stop-color="#9d46ff"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_4" data-name="Rectangle 4" width="360" height="640" transform="translate(547)" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_3" data-name="Rectangle 3" width="960" height="640" transform="translate(531)"/>
+    </clipPath>
+  </defs>
+  <g id="main_background" transform="translate(-547)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="360" height="640" transform="translate(547)" fill="url(#linear-gradient)"/>
+    <g id="Mask_Group_1" data-name="Mask Group 1" opacity="0.1" clip-path="url(#clip-path)">
+      <g id="XMLID_4_" transform="translate(16)" clip-path="url(#clip-path-2)">
+        <path id="XMLID_7_" d="M522.556,341.438,646.039,218.069l20.806,20.3-82.451,82.451,62.071,61.83,20.8-20.48-41.645-41.35L831.748,114.7,713.879-2.945" transform="translate(-2.364 -0.825)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_10_" d="M522.556,52.858l82.523,82.437,62.292-61.44-21.138-21L605,94.076,563.782,52.858l56.657-55.8" transform="translate(-2.364 -0.825)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_11_" d="M610.735.825,724.608,114.7l-41.226,41.225,20.74,20.759,62.294-61.44L648.655-2.945" transform="translate(22.326 -0.825)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_12_" d="M1001.69-15.3,1115.559,98.567l-41.229,41.226,20.749,20.759,62.285-61.44L1039.6-19.074" transform="translate(131.793 -5.341)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_13_" d="M737.027-2.945l96.426,96.854L813.4,114.815l20.054,20.576,61.92-61.92L854.147,32.246,889.773-2.945" transform="translate(57.688 -0.825)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_14_" d="M522.62,105.13l82.653,82.678-20.9,20.3-20.429-20.8L522.62,228.807" transform="translate(-2.346 29.436)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_15_" d="M522.556,72.859l82.735,82.6,82.167-82.6,20.613,20.613-61.692,61.984,41.259,41.388L708.153,176l-20.548-20.548" transform="translate(-2.364 20.401)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_16_" d="M795.232,443.885l82.655,82.677-20.9,20.306-20.43-20.8-41.327,41.49" transform="translate(73.985 124.288)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_17_" d="M795.168,411.613l82.737,82.6,82.166-82.6,20.613,20.613-61.691,61.985L960.251,535.6l20.515-20.838-20.548-20.548" transform="translate(73.967 115.252)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <line id="XMLID_18_" x2="97.706" y2="97.28" transform="translate(752.475 -3.77)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <line id="XMLID_19_" x2="97.704" y2="97.28" transform="translate(1107.754 -3.77)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_20_" d="M522.62,329.956l41.327-41.124,82.926,83.38L791.087,226.228,749.28,185.585l-82.452,82.451" transform="translate(-2.346 51.964)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_21_" d="M522.556,339.5l41.409-41.043,41.326,41.327-20.9,20.328-20.7-20.779-41.135,41.393" transform="translate(-2.364 83.567)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_22_" d="M1019.51,490.1l41.408-41.043,41.318,41.327-20.89,20.328-20.71-20.78-41.126,41.393" transform="translate(136.783 125.735)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_23_" d="M731.794,493.3,773.2,452.255l41.327,41.327-20.9,20.328-20.7-20.78-41.135,41.393" transform="translate(56.222 126.631)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <line id="XMLID_24_" y1="62.63" x2="61.873" transform="translate(685.061 278.774)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <line id="XMLID_25_" x1="41.062" y2="41.225" transform="translate(520.274 258.244)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <line id="XMLID_28_" x2="76.588" y2="76.416" transform="translate(835.247 -3.77)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_31_" d="M522.62,408.542l41.286-41.165,20.582,20.582L625.6,346.622l20.613,20.613L522.62,490.994" transform="translate(-2.346 97.054)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_32_" d="M666.827,346.622,728.9,408.7l-20.851,20.375-41.226-41.226L522.62,532.219" transform="translate(-2.346 97.054)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_33_" d="M603.2,452.423l41.065-41.385,82.243,82.241L690.871,530.1" transform="translate(20.216 115.091)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_36_" d="M702.643,484.261l-41.436-41.016-41.065,42-20.489-20.913-56.96,56.746" transform="translate(3.274 124.109)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_1" data-name="Path 1" d="M1356.014,244.022,1232.532,367.391l-20.8-20.3,82.445-82.451L1232.11,202.8l-20.8,20.48,41.638,41.35L1046.83,470.763,1164.692,588.4" transform="translate(144.433 56.785)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_2" data-name="Path 2" d="M1320.059,478.492l-82.521-82.437-62.3,61.44,21.146,21,41.229-41.219,41.216,41.219-56.653,55.8" transform="translate(180.387 110.895)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_3" data-name="Path 3" d="M1234.253,539.579,1120.385,425.706l41.229-41.225-20.749-20.759-62.285,61.44,117.76,118.186" transform="translate(153.323 101.842)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_4" data-name="Path 4" d="M1306.4,423.034l-82.662-82.678,20.9-20.3,20.429,20.8,41.331-41.49" transform="translate(193.967 83.82)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_5" data-name="Path 5" d="M1328.98,455.373l-82.739-82.6-82.163,82.6-20.608-20.613,61.7-61.984L1163.9,331.388l-20.518,20.84,20.557,20.548" transform="translate(171.466 92.789)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_6" data-name="Path 6" d="M1347.047,211.979,1305.716,253.1l-82.931-83.38-144.2,145.984,41.8,40.644,82.458-82.451" transform="translate(153.323 47.522)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_7" data-name="Path 7" d="M1306.479,179.609l-41.408,41.043-41.331-41.327,20.9-20.328,20.7,20.78,41.139-41.393" transform="translate(193.967 38.748)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <line id="Line_1" data-name="Line 1" y1="41.226" x2="41.062" transform="translate(1459.307 341.952)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_8" data-name="Path 8" d="M1315.357,124.149l-41.293,41.165-20.583-20.582-41.114,41.338-20.608-20.613L1315.357,41.7" transform="translate(185.013 11.675)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_9" data-name="Path 9" d="M1189.24,195.087l-62.08-62.077,20.851-20.374,41.229,41.225L1333.445,9.49" transform="translate(166.925 2.657)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_10" data-name="Path 10" d="M1234.715,74.732l-41.062,41.386L1111.4,33.875l35.635-36.82" transform="translate(162.512 -0.825)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="Path_11" data-name="Path 11" d="M1143.29,33.875l41.434,41.016,41.062-42,20.48,20.913,56.96-56.746" transform="translate(171.441 -0.825)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+        <path id="XMLID_37_" d="M683.841,431.966l41.818,41.819,61.234-62.747" transform="translate(42.795 115.091)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+      </g>
+    </g>
+    <text id="Handwriting_Recognizer" data-name="Handwriting 
+Recognizer" transform="translate(869 253)" fill="#fff" font-size="49" font-family="BradleyHandITC, Bradley Hand ITC"><tspan x="-286.224" y="0">Handwriting </tspan><tspan x="-229.783" y="61">Recognizer</tspan></text>
+  </g>
+</svg>
