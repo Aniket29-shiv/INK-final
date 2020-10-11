@@ -36,15 +36,17 @@ public class DrawingView extends View implements ContentChangedListener {
     private final Paint recognizedStrokePaint;
     private final TextPaint textPaint;
     private final Paint currentStrokePaint;
+    private final Path currentStroke;
     private  Paint canvasPaint;
+
     private Paint drawPaint;
     private Path drawPath;
 
-    private final Path currentStroke;
+
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
     private StrokeManager strokeManager;
-    private Paint paint;
+//    private Paint paint;
 
     private boolean erase=false;
     private int paintColor = 0xFF660000;
@@ -57,7 +59,7 @@ public class DrawingView extends View implements ContentChangedListener {
 
         setupDrawing();
         currentStrokePaint = new Paint();
-        currentStrokePaint.setColor(0xFF1B1B1B); // black.
+        currentStrokePaint.setColor(paintColor);
         currentStrokePaint.setAntiAlias(true);
         // Set stroke width based on display density.
         currentStrokePaint.setStrokeWidth(

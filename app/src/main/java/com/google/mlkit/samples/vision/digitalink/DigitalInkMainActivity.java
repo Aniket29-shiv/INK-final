@@ -1,7 +1,6 @@
 package com.google.mlkit.samples.vision.digitalink;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -31,12 +30,13 @@ import java.util.Set;
 import java.util.UUID;
 
 /** Main activity which creates a StrokeManager and connects it to the DrawingView. */
-public class DigitalInkMainActivity extends AppCompatActivity implements DownloadedModelsChangedListener, View.OnClickListener {
-    PaintView mPaintView;
-    int colorBackground,colorBrush;
+public class DigitalInkMainActivity extends AppCompatActivity implements
+        DownloadedModelsChangedListener, View.OnClickListener {
+//    PaintView mPaintView;
+//    int colorBackground,colorBrush;
 
-    private ImageButton currPaint, drawBtn,baru,erase,save;
-    private DrawingView drawView;
+    private ImageButton currentStrokePaint, drawBtn,baru,erase,save;
+    private DrawingView drawingView;
     
 
 
@@ -58,14 +58,14 @@ public class DigitalInkMainActivity extends AppCompatActivity implements Downloa
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_digital_ink_main);
-        drawView = (DrawingView)findViewById(R.id.drawing);
+        drawingView = (DrawingView)findViewById(R.id.drawing_view);
         drawBtn = (ImageButton)findViewById(R.id.draw_btn);
         baru = (ImageButton)findViewById(R.id.new_btn);
         erase = (ImageButton)findViewById(R.id.erase_btn);
         save = (ImageButton)findViewById(R.id.save_btn);
-        LinearLayout paintLayout = (LinearLayout)findViewById(R.id.paint_colors);
-        currPaint = (ImageButton)paintLayout.getChildAt(0);
-        currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
+        LinearLayout paintLayout = findViewById(R.id.paint_colors);
+        currentStrokePaint = (ImageButton)paintLayout.getChildAt(0);
+        currentStrokePaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
         drawBtn.setOnClickListener(this);
         baru.setOnClickListener(this);
         erase.setOnClickListener(this);
@@ -73,7 +73,7 @@ public class DigitalInkMainActivity extends AppCompatActivity implements Downloa
 
         Spinner languageSpinner = findViewById(R.id.languages_spinner);
 
-        DrawingView drawingView = findViewById(R.id.drawing_view);
+        drawingView = (DrawingView)findViewById(R.id.drawing_view);
         StatusTextView statusTextView = findViewById(R.id.status_text_view);
         drawingView.setStrokeManager(strokeManager);
         statusTextView.setStrokeManager(strokeManager);
@@ -85,14 +85,16 @@ public class DigitalInkMainActivity extends AppCompatActivity implements Downloa
         strokeManager.setTriggerRecognitionAfterInput(true);
 
         languageAdapter = populateLanguageAdapter();
-        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languageAdapter.setDropDownViewResource
+                (android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(languageAdapter);
         strokeManager.refreshDownloadedModelsStatus();
 
         languageSpinner.setOnItemSelectedListener(
                 new OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemSelected
+                            (AdapterView<?> parent, View view, int position, long id) {
                         String languageCode =
                                 ((ModelLanguageContainer) parent.getAdapter().getItem(position)).getLanguageTag();
                         if (languageCode == null) {
@@ -112,13 +114,14 @@ public class DigitalInkMainActivity extends AppCompatActivity implements Downloa
     }
 
     public void paintClicked(View view){
-        if(view!=currPaint){
+        if(view!=currentStrokePaint){
             ImageButton imgView = (ImageButton)view;
             String color = view.getTag().toString();
-            drawView.setColor(color);
+            drawingView.setColor(color);
             imgView.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
-            currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
-            currPaint=(ImageButton)view;
+            currentStrokePaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
+            currentStrokePaint=(ImageButton)view;
+
         }
     }
 
@@ -269,58 +272,46 @@ public class DigitalInkMainActivity extends AppCompatActivity implements Downloa
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.draw_btn){
-            drawView.setupDrawing();
+            drawingView.setupDrawing();
         }
         if(v.getId()==R.id.erase_btn){
-            drawView.setErase(true);
-            drawView.setBrushSize(drawView.getLastBrushSize());
+            drawingView.setErase(true);
+            drawingView.setBrushSize(drawingView.getLastBrushSize());
         }
         if(v.getId()==R.id.new_btn){
             AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
             newDialog.setTitle("New drawing");
             newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
-            newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int which){
-                    drawView.startNew();
-                    dialog.dismiss();
-                }
+            newDialog.setPositiveButton("Yes", (dialog, which) -> {
+                drawingView.startNew();
+                dialog.dismiss();
             });
-            newDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+            newDialog.setNegativeButton("No", (dialog, which) -> dialog.cancel());
             newDialog.show();
         }
         if(v.getId()==R.id.save_btn){
             AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
             saveDialog.setTitle("Save drawing");
             saveDialog.setMessage("Save drawing to device Gallery?");
-            saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int which){
-                    drawView.setDrawingCacheEnabled(true);
-                    String imgSaved = MediaStore.Images.Media.insertImage(
-                            getContentResolver(), drawView.getDrawingCache(),
-                            UUID.randomUUID().toString()+".png", "drawing");
-                    if(imgSaved!=null){
-                        Toast savedToast = Toast.makeText(getApplicationContext(),
-                                "Drawing saved to Gallery!", Toast.LENGTH_SHORT);
-                        savedToast.show();
-                    }
-                    else{
-                        Toast unsavedToast = Toast.makeText(getApplicationContext(),
-                                "Oops! Image could not be saved.", Toast.LENGTH_SHORT);
-                        unsavedToast.show();
-                    }
-                    drawView.destroyDrawingCache();
+            saveDialog.setPositiveButton("Yes", (dialog, which) -> {
+                drawingView.setDrawingCacheEnabled(true);
+                String imgSaved = MediaStore.Images.Media.insertImage(
+                        getContentResolver(), drawingView.getDrawingCache(),
+                        UUID.randomUUID().toString()+".png", "drawing");
+                if(imgSaved!=null){
+                    Toast savedToast = Toast.makeText(getApplicationContext(),
+                            "Drawing saved to Gallery!", Toast.LENGTH_SHORT);
+                    savedToast.show();
+                }
+                else{
+                    Toast unsavedToast = Toast.makeText(getApplicationContext(),
+                            "Oops! Image could not be saved.", Toast.LENGTH_SHORT);
+                    unsavedToast.show();
+                }
+                drawingView.destroyDrawingCache();
 
-                }
             });
-            saveDialog.setNegativeButton("No", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int which){
-                    dialog.cancel();
-                }
-            });
+            saveDialog.setNegativeButton("No", (dialog, which) -> dialog.cancel());
             saveDialog.show();
         }
     }
