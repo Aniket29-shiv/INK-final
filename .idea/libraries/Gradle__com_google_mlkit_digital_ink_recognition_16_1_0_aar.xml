@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.mlkit:digital-ink-recognition:16.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3709401e787d85c39e69501762b0d3dc/jetified-digital-ink-recognition-16.1.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3709401e787d85c39e69501762b0d3dc/jetified-digital-ink-recognition-16.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3709401e787d85c39e69501762b0d3dc/jetified-digital-ink-recognition-16.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/781ef009c09e41bdf8c60d5494440c5d/jetified-digital-ink-recognition-16.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/781ef009c09e41bdf8c60d5494440c5d/jetified-digital-ink-recognition-16.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/781ef009c09e41bdf8c60d5494440c5d/jetified-digital-ink-recognition-16.1.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/digital-ink-recognition/16.1.0/b9808201bd2874561f595c97c4a5973a9711c117/digital-ink-recognition-16.1.0-javadoc.jar!/" />

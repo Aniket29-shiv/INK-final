@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ML_Kit_Digital_Ink_Recognition_Demo.iml" filepath="$PROJECT_DIR$/.idea/modules/ML_Kit_Digital_Ink_Recognition_Demo.iml" group="ML_Kit_Digital_Ink_Recognition_Demo" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="ML Kit Digital Ink Recognition Demo/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ML_Kit_Digital_Ink_Recognition_Demo.iml" filepath="$PROJECT_DIR$/.idea/modules/ML_Kit_Digital_Ink_Recognition_Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ML_Kit_Digital_Ink_Recognition_Demo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ML_Kit_Digital_Ink_Recognition_Demo.app.iml" />
     </modules>
   </component>
 </project>

@@ -35,12 +35,13 @@ public class DrawingView extends View implements ContentChangedListener {
 
     private final Paint recognizedStrokePaint;
     private final TextPaint textPaint;
-    private final Paint currentStrokePaint;
-    private final Path currentStroke;
+    private Paint currentStrokePaint;
+    private Path currentStroke;
     private  Paint canvasPaint;
-
     private Paint drawPaint;
-    private Path drawPath;
+
+//    private Paint currentStrokePaint;
+//    private Path currentStroke;
 
 
     private Canvas drawCanvas;
@@ -69,26 +70,26 @@ public class DrawingView extends View implements ContentChangedListener {
         currentStrokePaint.setStrokeJoin(Paint.Join.ROUND);
         currentStrokePaint.setStrokeCap(Paint.Cap.ROUND);
 
-        drawPaint = new Paint();
-        drawPaint.setColor(0xFF1B1B1B); // black.
-        drawPaint.setAntiAlias(true);
-        // Set stroke width based on display density.
-        drawPaint.setStrokeWidth(
-                TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, STROKE_WIDTH_DP, getResources().getDisplayMetrics()));
-        drawPaint.setStyle(Paint.Style.STROKE);
-        drawPaint.setStrokeJoin(Paint.Join.ROUND);
-        drawPaint.setStrokeCap(Paint.Cap.ROUND);
+//        currentStrokePaint = new Paint();
+//        currentStrokePaint.setColor(0xFF1B1B1B); // black.
+//        currentStrokePaint.setAntiAlias(true);
+//        // Set stroke width based on display density.
+//        currentStrokePaint.setStrokeWidth(
+//                TypedValue.applyDimension(
+//                        TypedValue.COMPLEX_UNIT_DIP, STROKE_WIDTH_DP, getResources().getDisplayMetrics()));
+//        currentStrokePaint.setStyle(Paint.Style.STROKE);
+//        currentStrokePaint.setStrokeJoin(Paint.Join.ROUND);
+//        currentStrokePaint.setStrokeCap(Paint.Cap.ROUND);
 
 
         recognizedStrokePaint = new Paint(currentStrokePaint);
         recognizedStrokePaint.setColor(0xFFFFFF); // white.
 
         textPaint = new TextPaint();
-        textPaint.setColor(0xFF1B1B1B); // black.
+        textPaint.setColor(0xFF1B1B1B);// black.
 
         currentStroke = new Path();
-        drawPath = new Path();
+//        currentStroke = new Path();
         canvasPaint = new Paint(Paint.DITHER_FLAG);
     }
 
@@ -131,7 +132,7 @@ public class DrawingView extends View implements ContentChangedListener {
 
     @Override
     protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
-        Log.i(TAG, "onSizeChanged");
+        super.onSizeChanged(width, height, oldWidth, oldHeight);
         canvasBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
         invalidate();
@@ -170,6 +171,8 @@ public class DrawingView extends View implements ContentChangedListener {
 
         // Adjust scaleX to squeeze the text.
         textPaint.setTextScaleX((float) bb.width() / (float) r.width());
+
+        textPaint.setColor(paintColor);
 
         // And finally draw the text.
         drawCanvas.drawText(text, bb.left, bb.bottom, textPaint);
@@ -216,14 +219,14 @@ public class DrawingView extends View implements ContentChangedListener {
         float touchY = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                drawPath.moveTo(touchX, touchY);
+                currentStroke.moveTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_MOVE:
-                drawPath.lineTo(touchX, touchY);
+                currentStroke.lineTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_UP:
-                drawCanvas.drawPath(drawPath, drawPaint);
-                drawPath.reset();
+                drawCanvas.drawPath(currentStroke, currentStrokePaint);
+                currentStroke.reset();
                 break;
             default:
                 return false;
@@ -234,10 +237,23 @@ public class DrawingView extends View implements ContentChangedListener {
     public void setColor(String newColor){
         invalidate();
         paintColor = Color.parseColor(newColor);
-        drawPaint.setColor(paintColor);
+        currentStrokePaint.setColor(paintColor);
+//        textPaint.setColor(paintColor);
     }
     public void setupDrawing(){
-        drawPath = new Path();
+        currentStroke = new Path();
+        currentStrokePaint = new Paint();
+        currentStrokePaint.setColor(paintColor);
+        currentStrokePaint.setAntiAlias(true);
+        currentStrokePaint.setStrokeWidth(5);
+        currentStrokePaint.setStyle(Paint.Style.STROKE);
+        currentStrokePaint.setStrokeJoin(Paint.Join.ROUND);
+        currentStrokePaint.setStrokeCap(Paint.Cap.ROUND);
+        canvasPaint = new Paint(Paint.DITHER_FLAG);
+        brushSize = getResources().getInteger(R.integer.small_size);
+        lastBrushSize = brushSize;
+        currentStrokePaint.setStrokeWidth(brushSize);
+
         drawPaint = new Paint();
         drawPaint.setColor(paintColor);
         drawPaint.setAntiAlias(true);
@@ -283,19 +299,30 @@ public class DrawingView extends View implements ContentChangedListener {
     }
 
     public void startNew(){
-        drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
-        invalidate();
+//        drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+//        invalidate();
+        currentStroke.reset();
+        onSizeChanged(
+                canvasBitmap.getWidth(),
+                canvasBitmap.getHeight(),
+                canvasBitmap.getWidth(),
+                canvasBitmap.getHeight());
     }
     public void setErase(boolean isErase){
         erase=isErase;
-        if(erase) drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        else drawPaint.setXfermode(null);
+        if(erase){
+            currentStrokePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            recognizedStrokePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+//            textPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        }
+
+        else currentStrokePaint.setXfermode(null);
     }
     public void setBrushSize(float newSize){
         float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 newSize, getResources().getDisplayMetrics());
         brushSize=pixelAmount;
-        drawPaint.setStrokeWidth(brushSize);
+        currentStrokePaint.setStrokeWidth(brushSize);
     }
     public void setLastBrushSize(float lastSize){
         lastBrushSize=lastSize;
@@ -309,9 +336,20 @@ public class DrawingView extends View implements ContentChangedListener {
         canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
     }
+
     @Override
     public void onDrawPaint(Canvas canvas) {
-        canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
-        canvas.drawPath(drawPath, drawPaint);
+        
     }
+
+    @Override
+    public void oncurrentStrokePaint(Canvas canvas) {
+
+    }
+
+//    @Override
+//    public void oncurrentStrokePaint(Canvas canvas) {
+//        canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+//        canvas.currentStroke(currentStroke, currentStrokePaint);
+//    }
 }

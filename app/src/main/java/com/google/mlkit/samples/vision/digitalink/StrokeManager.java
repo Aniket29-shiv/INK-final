@@ -30,6 +30,8 @@ public class StrokeManager {
         void onSizeChangedPaint(int w, int h, int oldw, int oldh);
 
         void onDrawPaint(Canvas canvas);
+
+        void oncurrentStrokePaint(Canvas canvas);
     }
 
     /** Interface to register to be notified of changes in the status. */
