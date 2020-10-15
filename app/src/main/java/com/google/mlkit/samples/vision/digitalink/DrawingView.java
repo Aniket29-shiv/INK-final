@@ -9,14 +9,17 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+
 import com.google.mlkit.samples.vision.digitalink.StrokeManager.ContentChangedListener;
 import com.google.mlkit.vision.digitalink.Ink;
+
 import java.util.List;
 
 /**
@@ -37,6 +40,7 @@ public class DrawingView extends View implements ContentChangedListener {
     private final TextPaint textPaint;
     private Paint currentStrokePaint;
     private Path currentStroke;
+    private Path drawPath;
     private  Paint canvasPaint;
     private Paint drawPaint;
 
@@ -173,6 +177,7 @@ public class DrawingView extends View implements ContentChangedListener {
         textPaint.setTextScaleX((float) bb.width() / (float) r.width());
 
         textPaint.setColor(paintColor);
+        textPaint.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 
         // And finally draw the text.
         drawCanvas.drawText(text, bb.left, bb.bottom, textPaint);
@@ -311,9 +316,18 @@ public class DrawingView extends View implements ContentChangedListener {
     public void setErase(boolean isErase){
         erase=isErase;
         if(erase){
+//            currentStrokePaint.setColor(paintColor);
+//            currentStrokePaint.setStrokeWidth(50f);
+//            recognizedStrokePaint.setColor(0xFFFFFF);
+//            textPaint.setColor(0xFFFFFF);
+            currentStrokePaint.setStrokeWidth(50f);
             currentStrokePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            recognizedStrokePaint.setStrokeWidth(50f);
             recognizedStrokePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-//            textPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            textPaint.clearShadowLayer();
+
+            drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+
         }
 
         else currentStrokePaint.setXfermode(null);

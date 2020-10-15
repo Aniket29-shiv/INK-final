@@ -1,5 +1,6 @@
 package com.google.mlkit.samples.vision.digitalink;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,6 +31,7 @@ import java.util.Set;
 import java.util.UUID;
 
 /** Main activity which creates a StrokeManager and connects it to the DrawingView. */
+@SuppressWarnings("ALL")
 public class DigitalInkMainActivity extends AppCompatActivity implements
         DownloadedModelsChangedListener, View.OnClickListener {
 //    PaintView mPaintView;
@@ -113,6 +115,7 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
         strokeManager.reset();
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void paintClicked(View view){
         if(view!=currentStrokePaint){
             ImageButton imgView = (ImageButton)view;
@@ -129,10 +132,6 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
         strokeManager.download();
     }
 
-    public void recognizeClick(View v) {
-        strokeManager.recognize();
-    }
-
     public void clearClick(View v) {
         strokeManager.reset();
         DrawingView drawingView = findViewById(R.id.drawing_view);
@@ -142,11 +141,6 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
     public void deleteClick(View v) {
         strokeManager.deleteActiveModel();
     }
-
-    public void eraseClick(View v ) {
-
-    }
-
 
 
     private static class ModelLanguageContainer implements Comparable<ModelLanguageContainer> {
@@ -283,7 +277,7 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
             newDialog.setTitle("New drawing");
             newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
             newDialog.setPositiveButton("Yes", (dialog, which) -> {
-                drawingView.startNew();
+                drawingView.clear();
                 dialog.dismiss();
             });
             newDialog.setNegativeButton("No", (dialog, which) -> dialog.cancel());

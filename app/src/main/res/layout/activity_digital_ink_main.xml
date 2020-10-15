@@ -114,10 +114,11 @@
             android:layout_height="60dp"
             android:orientation="horizontal">
 
-            <Spinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/languages_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="Select language"
                 android:layout_weight="3" />
 
             <Button
