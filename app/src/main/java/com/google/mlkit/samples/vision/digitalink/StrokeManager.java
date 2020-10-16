@@ -238,7 +238,7 @@ public class StrokeManager {
             return Tasks.forResult(null);
         }
         if (modelManager.getRecognizer() == null) {
-            setStatus("Recognizer not set");
+            setStatus("Please Select Language...");
             return Tasks.forResult(null);
         }
 

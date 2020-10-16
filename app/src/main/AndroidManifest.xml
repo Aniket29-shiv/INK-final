@@ -17,26 +17,35 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:label="                           SMARTITY"
+        android:label="Smart Board"
         tools:replace="android:label"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
-        <activity
-            android:name="com.google.mlkit.samples.vision.digitalink.DigitalInkMainActivity"
-            android:label="INK"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".SignIn"></activity>
+
+        <activity android:name=".HomeScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SignUp"></activity>
+
+        <activity
+            android:name=".DigitalInkMainActivity"
+            android:label="INK"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".HomeScreen">
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

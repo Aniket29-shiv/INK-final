@@ -2,6 +2,7 @@ package com.google.mlkit.samples.vision.digitalink;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -55,11 +57,21 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
     @VisibleForTesting
     final StrokeManager strokeManager = new StrokeManager();
     private ArrayAdapter<ModelLanguageContainer> languageAdapter;
+    ImageView ExitButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_digital_ink_main);
+
+        ExitButton = findViewById(R.id.exit_btn);
+        ExitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DigitalInkMainActivity.this, HomeScreen.class);
+                startActivity(intent);
+            }
+        });
         drawingView = (DrawingView)findViewById(R.id.drawing_view);
         drawBtn = (ImageButton)findViewById(R.id.draw_btn);
         baru = (ImageButton)findViewById(R.id.new_btn);
@@ -69,11 +81,11 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
         currentStrokePaint = (ImageButton)paintLayout.getChildAt(0);
         currentStrokePaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
         drawBtn.setOnClickListener(this);
-        baru.setOnClickListener(this);
+//        baru.setOnClickListener(this);
         erase.setOnClickListener(this);
         save.setOnClickListener(this);
 
-        Spinner languageSpinner = findViewById(R.id.languages_spinner);
+        Spinner languageSpinner = findViewById(R.id.Languages_Spinner);
 
         drawingView = (DrawingView)findViewById(R.id.drawing_view);
         StatusTextView statusTextView = findViewById(R.id.status_text_view);
@@ -140,6 +152,13 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
 
     public void deleteClick(View v) {
         strokeManager.deleteActiveModel();
+    }
+
+    public void undoClick(View v){
+        drawingView.onClickUndo();
+    }
+    public void redoClick(View v){
+        drawingView.onClickRedo();
     }
 
 

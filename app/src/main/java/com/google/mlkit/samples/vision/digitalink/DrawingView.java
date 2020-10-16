@@ -20,6 +20,7 @@ import android.view.View;
 import com.google.mlkit.samples.vision.digitalink.StrokeManager.ContentChangedListener;
 import com.google.mlkit.vision.digitalink.Ink;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ import java.util.List;
  * <p>The view accepts touch inputs, renders them on screen, and passes the content to the
  * StrokeManager. The view is also able to draw content from the StrokeManager.
  */
-public class DrawingView extends View implements ContentChangedListener {
+public class DrawingView extends View implements ContentChangedListener, View.OnTouchListener {
     private static final String TAG = "MLKD.DrawingView";
     private static final int STROKE_WIDTH_DP = 3;
     private static final int MIN_BB_WIDTH = 10;
@@ -40,6 +41,9 @@ public class DrawingView extends View implements ContentChangedListener {
     private final TextPaint textPaint;
     private Paint currentStrokePaint;
     private Path currentStroke;
+    private ArrayList<Paint> paints = new ArrayList<Paint>();
+    private ArrayList<Paint> undonepaints = new ArrayList<Paint>();
+
     private Path drawPath;
     private  Paint canvasPaint;
     private Paint drawPaint;
@@ -212,6 +216,32 @@ public class DrawingView extends View implements ContentChangedListener {
                 canvasBitmap.getHeight());
     }
 
+    public void onClickUndo () {
+        if (paints.size()>0)
+        {
+            undonepaints.add(paints.remove(paints.size()-1));
+            invalidate();
+        }
+        else
+        {
+
+        }
+        //toast the user
+    }
+
+    public void onClickRedo (){
+        if (undonepaints.size()>0)
+        {
+            paints.add(undonepaints.remove(undonepaints.size()-1));
+            invalidate();
+        }
+        else
+        {
+
+        }
+        //toast the user
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
@@ -224,6 +254,7 @@ public class DrawingView extends View implements ContentChangedListener {
         float touchY = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                undonepaints.clear();
                 currentStroke.moveTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -231,7 +262,10 @@ public class DrawingView extends View implements ContentChangedListener {
                 break;
             case MotionEvent.ACTION_UP:
                 drawCanvas.drawPath(currentStroke, currentStrokePaint);
+                paints.add(textPaint);
+                currentStroke = new Path();
                 currentStroke.reset();
+
                 break;
             default:
                 return false;
@@ -280,6 +314,7 @@ public class DrawingView extends View implements ContentChangedListener {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                undonepaints.clear();
                 currentStroke.moveTo(x, y);
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -288,6 +323,8 @@ public class DrawingView extends View implements ContentChangedListener {
             case MotionEvent.ACTION_UP:
                 currentStroke.lineTo(x, y);
                 drawCanvas.drawPath(currentStroke, currentStrokePaint);
+                paints.add(textPaint);
+                currentStroke = new Path();
                 currentStroke.reset();
                 break;
             default:
@@ -359,6 +396,11 @@ public class DrawingView extends View implements ContentChangedListener {
     @Override
     public void oncurrentStrokePaint(Canvas canvas) {
 
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        return false;
     }
 
 //    @Override

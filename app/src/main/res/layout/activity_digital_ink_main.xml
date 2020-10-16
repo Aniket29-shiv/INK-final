@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <FrameLayout
@@ -11,28 +13,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/common_google_signin_btn_text_dark_default"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="185dp"
-                android:layout_height="56dp"
-                android:layout_marginLeft="80dp"
-                android:layout_marginRight="80dp"
-                android:background="#7B1FA2"
-                android:fontFamily="@font/aladin"
-                android:paddingLeft="60dp"
-                android:paddingRight="60dp"
-                android:text="@string/INK"
-                android:textColor="#F8F6F5"
-                android:textSize="36sp" />
 
             <com.google.mlkit.samples.vision.digitalink.StatusTextView
                 android:id="@+id/status_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Status text..."
-                android:textIsSelectable="true" />
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="Welcome to 'Smart Board' !"
+                android:textAlignment="center"
+                android:textIsSelectable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.001" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,95 +39,107 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/new_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:contentDescription="@string/start_new"
-                    android:src="@drawable/new_pic" />
+                    android:id="@+id/exit_btn"
+                    android:layout_width="48dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#000000"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.03"
+                    app:srcCompat="@drawable/abc_vector_test" />
 
+<!--                <ImageButton-->
+<!--                    android:id="@+id/new_btn"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_marginRight="15dp"-->
+<!--                    android:background="@color/common_google_signin_btn_text_dark_default"-->
+<!--                    android:contentDescription="@string/start_new"-->
+<!--                    android:src="@drawable/new_folder" />-->
 
 
                 <ImageButton
                     android:id="@+id/draw_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:contentDescription="@string/brush"
-                    android:src="@drawable/brush" />
+                    android:src="@drawable/pen" />
 
                 <ImageButton
                     android:id="@+id/erase_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:contentDescription="@string/erase"
                     android:src="@drawable/eraser" />
 
                 <ImageButton
                     android:id="@+id/save_btn"
                     android:layout_width="60dp"
-                    android:layout_height="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:contentDescription="@string/save"
+                    android:paddingTop="5dp"
                     android:src="@drawable/save" />
 
                 <!--                <Button-->
-<!--                    android:id="@+id/recognize_button"-->
-<!--                    android:layout_width="2dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:background="#E64A19"-->
-<!--                    android:onClick="recognizeClick"-->
-<!--                    android:text="Recognize"-->
-<!--                    android:textColor="#FFFFFF" />-->
-
-                <Button
-                    android:id="@+id/download_button"
-                    android:layout_width="66dp"
-                    android:layout_height="49dp"
-
-                    android:background="@drawable/download"
-                    android:onClick="downloadClick"
-                    android:paddingRight="10dp"
-                    android:src="@drawable/download" />
+                <!--                    android:id="@+id/recognize_button"-->
+                <!--                    android:layout_width="2dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="#E64A19"-->
+                <!--                    android:onClick="recognizeClick"-->
+                <!--                    android:text="Recognize"-->
+                <!--                    android:textColor="#FFFFFF" />-->
 
                 <Button
                     android:id="@+id/clear_button"
-                    android:layout_width="110dp"
-                    android:layout_height="57dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/clear"
-                    android:onClick="clearClick"
 
-                    android:paddingLeft="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/exit"
+                    android:onClick="clearClick"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
                     android:src="@drawable/clear" />
 
             </LinearLayout>
-        </LinearLayout>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
-
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/languages_spinner"
-                android:layout_width="0dp"
+                android:id="@+id/Languages_Spinner"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
                 android:text="Select language"
-                android:layout_weight="3" />
-
-            <Button
-                android:id="@+id/delete_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="deleteClick"
-                android:text="Delete model" />
+                app:layout_constraintEnd_toEndOf="@+id/drawing_view"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/save_btn"
+                tools:ignore="MissingClass" />
         </LinearLayout>
     </FrameLayout>
+
+
 
     <com.google.mlkit.samples.vision.digitalink.DrawingView
         android:id="@+id/drawing_view"
@@ -141,8 +151,9 @@
     <LinearLayout
         android:id="@+id/paint_colors"
         android:layout_width="367dp"
-        android:layout_height="38dp"
+        android:layout_height="32dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="0dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -255,4 +266,60 @@
             android:src="@drawable/paint"
             android:tag="#FF787878" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@color/common_google_signin_btn_text_light_default">
+
+        <ImageButton
+            android:id="@+id/download_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="#FFFFFF"
+            android:onClick="downloadClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/delete_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/download" />
+
+        <ImageButton
+            android:id="@+id/delete_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:onClick="deleteClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/delete" />
+
+        <ImageButton
+            android:id="@+id/undo"
+
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Undo"
+            android:src="@drawable/undo"/>
+
+
+        <ImageButton
+            android:id="@+id/redo"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Redo"
+            android:src="@drawable/redo"/>
+    </LinearLayout>
+
 </LinearLayout>
