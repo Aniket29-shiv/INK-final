@@ -29,6 +29,7 @@ import java.util.List;
  * <p>The view accepts touch inputs, renders them on screen, and passes the content to the
  * StrokeManager. The view is also able to draw content from the StrokeManager.
  */
+@SuppressWarnings("ALL")
 public class DrawingView extends View implements ContentChangedListener, View.OnTouchListener {
     private static final String TAG = "MLKD.DrawingView";
     private static final int STROKE_WIDTH_DP = 3;
@@ -41,12 +42,13 @@ public class DrawingView extends View implements ContentChangedListener, View.On
     private final TextPaint textPaint;
     private Paint currentStrokePaint;
     private Path currentStroke;
-    private ArrayList<Paint> paints = new ArrayList<Paint>();
-    private ArrayList<Paint> undonepaints = new ArrayList<Paint>();
+    private ArrayList<String> strings = new ArrayList<String>();
+    private ArrayList<String> undonestrings = new ArrayList<String>();
 
     private Path drawPath;
     private  Paint canvasPaint;
     private Paint drawPaint;
+    private RecognitionTask.RecognizedInk currentResult;
 
 //    private Paint currentStrokePaint;
 //    private Path currentStroke;
@@ -100,6 +102,8 @@ public class DrawingView extends View implements ContentChangedListener, View.On
 //        currentStroke = new Path();
         canvasPaint = new Paint(Paint.DITHER_FLAG);
     }
+
+
 
     private static Rect computeBoundingBox(Ink ink) {
         float top = Float.MAX_VALUE;
@@ -216,31 +220,6 @@ public class DrawingView extends View implements ContentChangedListener, View.On
                 canvasBitmap.getHeight());
     }
 
-    public void onClickUndo () {
-        if (paints.size()>0)
-        {
-            undonepaints.add(paints.remove(paints.size()-1));
-            invalidate();
-        }
-        else
-        {
-
-        }
-        //toast the user
-    }
-
-    public void onClickRedo (){
-        if (undonepaints.size()>0)
-        {
-            paints.add(undonepaints.remove(undonepaints.size()-1));
-            invalidate();
-        }
-        else
-        {
-
-        }
-        //toast the user
-    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -248,31 +227,7 @@ public class DrawingView extends View implements ContentChangedListener, View.On
         canvas.drawPath(currentStroke, currentStrokePaint);
     }
 
-    @Override
-    public boolean onTouchEventPaint(MotionEvent event) {
-        float touchX = event.getX();
-        float touchY = event.getY();
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                undonepaints.clear();
-                currentStroke.moveTo(touchX, touchY);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                currentStroke.lineTo(touchX, touchY);
-                break;
-            case MotionEvent.ACTION_UP:
-                drawCanvas.drawPath(currentStroke, currentStrokePaint);
-                paints.add(textPaint);
-                currentStroke = new Path();
-                currentStroke.reset();
 
-                break;
-            default:
-                return false;
-        }
-        invalidate();
-        return true;
-    }
     public void setColor(String newColor){
         invalidate();
         paintColor = Color.parseColor(newColor);
@@ -314,7 +269,7 @@ public class DrawingView extends View implements ContentChangedListener, View.On
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                undonepaints.clear();
+                undonestrings.clear();
                 currentStroke.moveTo(x, y);
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -323,8 +278,8 @@ public class DrawingView extends View implements ContentChangedListener, View.On
             case MotionEvent.ACTION_UP:
                 currentStroke.lineTo(x, y);
                 drawCanvas.drawPath(currentStroke, currentStrokePaint);
-                paints.add(textPaint);
-                currentStroke = new Path();
+                strings.add(RecognitionTask.RecognizedInk.curr_text);
+//                currentStroke = new Path();
                 currentStroke.reset();
                 break;
             default:
@@ -333,6 +288,38 @@ public class DrawingView extends View implements ContentChangedListener, View.On
         strokeManager.addNewTouchEvent(event);
         invalidate();
         return true;
+    }
+
+    public void onClickUndo () {
+        if (strings.size()>0)
+        {
+            undonestrings.add(strings.remove(strings.size()-1));
+            invalidate();
+        }
+        else
+        {
+
+        }
+        //toast the user
+    }
+
+    public void onClickRedo (){
+        if (undonestrings.size()>0)
+        {
+            strings.add(undonestrings.remove(undonestrings.size()-1));
+            invalidate();
+        }
+        else
+        {
+
+        }
+        //toast the user
+    }
+
+
+    @Override
+    public boolean onTouchEventPaint(MotionEvent event) {
+        return false;
     }
 
     @Override

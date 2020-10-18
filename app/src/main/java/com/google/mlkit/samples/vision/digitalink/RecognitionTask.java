@@ -1,5 +1,7 @@
 package com.google.mlkit.samples.vision.digitalink;
 
+import android.graphics.Paint;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -9,6 +11,8 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.mlkit.vision.digitalink.DigitalInkRecognizer;
 import com.google.mlkit.vision.digitalink.Ink;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static com.google.mlkit.samples.vision.digitalink.RecognitionTask.RecognizedInk.curr_text;
 
 /** Task to run asynchronously to obtain recognition results. */
 public class RecognitionTask {
@@ -44,6 +48,8 @@ public class RecognitionTask {
 
     /** Helper class that stores an ink along with the corresponding recognized text. */
     public static class RecognizedInk {
+        public static Paint currentResult;
+        public static String curr_text;
         public final Ink ink;
         public final String text;
 
@@ -63,9 +69,11 @@ public class RecognitionTask {
                                 return Tasks.forResult(null);
                             }
                             currentResult = new RecognizedInk(ink, result.getCandidates().get(0).getText());
-                            Log.i(TAG, "result: " + currentResult.text);
+                            curr_text = currentResult.text;
+                            System.out.println(curr_text);
+                            Log.i(TAG, "result: " + curr_text);
                             done.set(true);
-                            return Tasks.forResult(currentResult.text);
+                            return Tasks.forResult(curr_text);
                         });
     }
 }

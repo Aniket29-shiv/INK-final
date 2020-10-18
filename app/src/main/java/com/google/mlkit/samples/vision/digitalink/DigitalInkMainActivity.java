@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+//import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
 
     private ImageButton currentStrokePaint, drawBtn,baru,erase,save;
     private DrawingView drawingView;
-    
+
 
 
 
@@ -58,6 +59,7 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
     final StrokeManager strokeManager = new StrokeManager();
     private ArrayAdapter<ModelLanguageContainer> languageAdapter;
     ImageView ExitButton;
+    private DrawingView DrawView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,8 @@ public class DigitalInkMainActivity extends AppCompatActivity implements
             }
         });
         drawingView = (DrawingView)findViewById(R.id.drawing_view);
+//        RelativeLayout parent = (RelativeLayout) findViewById(R.id.drawing_view);
+//        DrawView = new DrawingView(this, textPaint);
         drawBtn = (ImageButton)findViewById(R.id.draw_btn);
         baru = (ImageButton)findViewById(R.id.new_btn);
         erase = (ImageButton)findViewById(R.id.erase_btn);
