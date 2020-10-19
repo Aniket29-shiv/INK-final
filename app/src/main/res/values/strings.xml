@@ -9,4 +9,12 @@
     <string name="save">Save</string>
     <string name="paint">Paint</string>
     <string name="INK">INK</string>
+    <string name="welcome_to_smart_board">Welcome to \'Smart Board\' !</string>
+    <string name="select_language">Select language</string>
+    <string name="todo">TODO</string>
+
+    <string name="undo">Undo</string>
+
+    <string name="redo">Redo</string>
+
 </resources>
